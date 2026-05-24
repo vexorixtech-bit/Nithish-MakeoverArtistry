@@ -1,0 +1,861 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Nithish MakeoverArtistry</title>
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css" />
+  <style>
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+      font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+    }
+
+    body {
+      background: #02010a;
+      color: #e0d4ec;
+      scroll-behavior: smooth;
+      overflow-y: scroll;
+    }
+    ::-webkit-scrollbar { display: none; }
+    html { scrollbar-width: none; -ms-overflow-style: none; }
+
+    /* ── Navbar ── */
+    nav {
+      position: sticky;
+      top: 0;
+      z-index: 100;
+      background: #0d0d1a;
+      padding: 18px 60px;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      box-shadow: 0 2px 15px rgba(0,0,0,0.3);
+    }
+
+    nav .logo {
+      font-size: 1.5rem;
+      font-weight: 700;
+      color: #fff;
+      letter-spacing: 1px;
+    }
+    nav .logo span {
+      color: #c084b5;
+    }
+
+    nav ul {
+      display: flex;
+      list-style: none;
+      gap: 30px;
+    }
+
+    nav ul li a {
+      text-decoration: none;
+      color: #c8b8d8;
+      font-weight: 600;
+      font-size: 1rem;
+      transition: 0.3s;
+      padding-bottom: 4px;
+    }
+
+    nav ul li a:hover {
+      color: #c084b5;
+      border-bottom: 2px solid #c084b5;
+    }
+
+    .menu-toggle {
+      display: none;
+      font-size: 1.5rem;
+      color: #fff;
+      cursor: pointer;
+    }
+
+    /* ── Hero / Home ── */
+    .hero {
+      min-height: 90vh;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      text-align: center;
+      padding: 40px 20px;
+      background: linear-gradient(rgba(2, 1, 10, 0.8), rgba(2, 1, 10, 0.85)),
+                  url('https://images.unsplash.com/photo-1596462502278-27bfdc403348?w=1600') center/cover fixed;
+    }
+
+    .hero h1 {
+      font-size: 3.2rem;
+      color: #fff;
+      margin-bottom: 10px;
+    }
+
+    .hero h1 span {
+      color: #c084b5;
+    }
+
+    .hero p {
+      font-size: 1.2rem;
+      color: #d4c4e8;
+      max-width: 650px;
+      margin: 12px auto 25px;
+      line-height: 1.6;
+    }
+
+    .hero .btn-book {
+      display: inline-block;
+      background: #c084b5;
+      color: #fff;
+      padding: 14px 40px;
+      border-radius: 30px;
+      font-size: 1.1rem;
+      font-weight: 700;
+      text-decoration: none;
+      transition: 0.3s;
+      margin-top: 10px;
+    }
+
+    .hero .btn-book:hover {
+      background: #a86b9e;
+      transform: translateY(-2px);
+    }
+
+    .stats {
+      display: flex;
+      justify-content: center;
+      gap: 50px;
+      margin-top: 30px;
+      flex-wrap: wrap;
+    }
+
+    .stat-item {
+      background: #121221;
+      padding: 20px 35px;
+      border-radius: 14px;
+      box-shadow: 0 6px 20px rgba(0,0,0,0.2);
+      min-width: 160px;
+    }
+
+    .stat-item h3 {
+      font-size: 2rem;
+      color: #fff;
+    }
+
+    .stat-item p {
+      font-size: 0.95rem;
+      color: #b8a8c8;
+      margin: 4px 0 0;
+    }
+
+    /* ── About ── */
+    .about {
+      padding: 70px 20px;
+      max-width: 1100px;
+      margin: auto;
+    }
+
+    .about-wrap {
+      display: flex;
+      align-items: center;
+      gap: 50px;
+      flex-wrap: wrap;
+    }
+
+    .about-image {
+      flex: 1 1 380px;
+      border-radius: 20px;
+      overflow: hidden;
+      box-shadow: 0 8px 30px rgba(0,0,0,0.3);
+    }
+
+    .about-image img {
+      width: 100%;
+      height: 450px;
+      object-fit: cover;
+      display: block;
+    }
+
+    .about-text {
+      flex: 1 1 400px;
+    }
+
+    .about-text h2 {
+      font-size: 2.2rem;
+      color: #fff;
+      margin-bottom: 20px;
+    }
+
+    .about-text p {
+      font-size: 1.1rem;
+      color: #d4c4e8;
+      line-height: 1.7;
+      margin-bottom: 15px;
+    }
+
+    .about-text .stats {
+      margin-top: 30px;
+      display: flex;
+      gap: 30px;
+      flex-wrap: wrap;
+    }
+
+    /* ── Section titles ── */
+    .section-title {
+      text-align: center;
+      font-size: 2.2rem;
+      color: #fff;
+      margin-bottom: 40px;
+      padding-top: 30px;
+    }
+
+    /* ── Portfolio ── */
+    .portfolio {
+      padding: 60px 20px 80px;
+      max-width: 1200px;
+      margin: auto;
+    }
+
+    .portfolio-tabs {
+      display: flex;
+      justify-content: center;
+      gap: 12px;
+      margin-bottom: 35px;
+      flex-wrap: wrap;
+    }
+
+    .portfolio-tabs button {
+      background: #1a1a30;
+      border: none;
+      padding: 12px 28px;
+      border-radius: 30px;
+      font-size: 1rem;
+      font-weight: 600;
+      color: #c8b8d8;
+      cursor: pointer;
+      transition: 0.3s;
+    }
+
+    .portfolio-tabs button.active,
+    .portfolio-tabs button:hover {
+      background: #c084b5;
+      color: #fff;
+    }
+
+    .gallery {
+      display: grid;
+      grid-template-columns: repeat(auto-fill, minmax(220px, 1fr));
+      gap: 18px;
+    }
+
+    .gallery-card {
+      background: #121221;
+      border-radius: 14px;
+      overflow: hidden;
+      box-shadow: 0 4px 14px rgba(0,0,0,0.2);
+      transition: 0.3s;
+    }
+
+    .gallery-card:hover {
+      transform: translateY(-5px);
+      box-shadow: 0 8px 25px rgba(0,0,0,0.3);
+    }
+
+    .gallery-card img {
+      width: 100%;
+      height: 240px;
+      object-fit: cover;
+      display: block;
+    }
+
+    .gallery-card .card-label {
+      padding: 10px 14px;
+      font-weight: 600;
+      color: #fff;
+      background: #1a1a30;
+    }
+
+    /* ── Services ── */
+    .services {
+      padding: 60px 20px 80px;
+      max-width: 1100px;
+      margin: auto;
+    }
+
+    .services-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));
+      gap: 25px;
+    }
+
+    .service-card {
+      border-radius: 16px;
+      overflow: hidden;
+      position: relative;
+      box-shadow: 0 4px 14px rgba(0,0,0,0.15);
+      transition: 0.3s;
+      min-height: 280px;
+      display: flex;
+      align-items: flex-end;
+    }
+
+    .service-card .card-content {
+      opacity: 0;
+      transform: translateY(30px);
+    }
+
+    .service-card .card-content.reveal {
+      animation: slideUpText 1.5s ease forwards;
+    }
+
+    @keyframes slideUpText {
+      to { opacity: 1; transform: translateY(0); }
+    }
+
+    .service-card:hover {
+      transform: translateY(-4px);
+      box-shadow: 0 8px 25px rgba(0,0,0,0.3);
+    }
+
+    .service-card .card-bg {
+      position: absolute;
+      inset: 0;
+      background-size: cover;
+      background-position: center;
+    }
+
+    .service-card .card-overlay {
+      position: absolute;
+      inset: 0;
+      background: linear-gradient(transparent 30%, rgba(2,1,10,0.95));
+    }
+
+    .service-card .card-content {
+      position: relative;
+      z-index: 1;
+      padding: 30px 25px;
+      width: 100%;
+      text-align: center;
+    }
+
+    .service-card h3 {
+      color: #fff;
+      margin-bottom: 10px;
+    }
+
+    .service-card p {
+      color: #d4c4e8;
+      font-size: 0.95rem;
+      line-height: 1.5;
+    }
+
+    .service-card .price {
+      display: inline-block;
+      margin-top: 12px;
+      background: rgba(178, 75, 226, 0.4);
+      padding: 6px 20px;
+      border-radius: 20px;
+      font-weight: 700;
+      color: #fff;
+    }
+
+    .service-card .badge {
+      display: inline-block;
+      background: #c084b5;
+      color: #fff;
+      font-size: 0.75rem;
+      font-weight: 700;
+      padding: 4px 12px;
+      border-radius: 20px;
+      margin-left: 8px;
+      vertical-align: middle;
+    }
+
+    /* ── Testimonials ── */
+    .testimonials {
+      padding: 60px 20px 80px;
+      max-width: 1100px;
+      margin: auto;
+    }
+
+    .testimonials-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
+      gap: 25px;
+    }
+
+    .testimonial-card {
+      background: #121221;
+      border-radius: 16px;
+      padding: 30px 25px;
+      box-shadow: 0 4px 14px rgba(0,0,0,0.15);
+      text-align: center;
+      transition: 0.3s;
+    }
+
+    .testimonial-card:hover {
+      transform: translateY(-4px);
+      box-shadow: 0 8px 25px rgba(0,0,0,0.3);
+    }
+
+    .testimonial-card i {
+      font-size: 2rem;
+      color: #c084b5;
+      margin-bottom: 12px;
+    }
+
+    .testimonial-card p {
+      color: #c8b8d8;
+      font-size: 0.95rem;
+      line-height: 1.6;
+      font-style: italic;
+      margin-bottom: 12px;
+    }
+
+    .testimonial-card h4 {
+      color: #fff;
+      font-size: 1rem;
+    }
+
+    .testimonial-card .stars {
+      color: #e8a838;
+      margin-bottom: 8px;
+      font-size: 0.9rem;
+    }
+
+    /* ── Contact ── */
+    .contact {
+      padding: 60px 20px 80px;
+      max-width: 1100px;
+      margin: auto;
+    }
+
+    .contact-wrap {
+      display: flex;
+      gap: 40px;
+      flex-wrap: wrap;
+    }
+
+    .contact-info {
+      flex: 1 1 350px;
+      background: #121221;
+      border-radius: 16px;
+      padding: 30px;
+      box-shadow: 0 4px 14px rgba(0,0,0,0.15);
+    }
+
+    .contact-info h3 {
+      color: #fff;
+      margin-bottom: 20px;
+      font-size: 1.3rem;
+    }
+
+    .contact-info .info-item {
+      display: flex;
+      align-items: center;
+      gap: 14px;
+      margin-bottom: 18px;
+    }
+
+    .contact-info .info-item i {
+      width: 22px;
+      color: #c084b5;
+      font-size: 1.2rem;
+    }
+
+    .contact-info .info-item p {
+      color: #d4c4e8;
+      font-size: 0.95rem;
+    }
+
+    .contact-info .info-item a {
+      color: #d4c4e8;
+      text-decoration: none;
+    }
+
+    .contact-info .info-item a:hover {
+      color: #c084b5;
+    }
+
+    .contact-form {
+      flex: 1 1 400px;
+      background: #121221;
+      border-radius: 16px;
+      padding: 30px;
+      box-shadow: 0 4px 14px rgba(0,0,0,0.15);
+    }
+
+    .contact-form h3 {
+      color: #fff;
+      margin-bottom: 20px;
+      font-size: 1.3rem;
+    }
+
+    .contact-form input,
+    .contact-form textarea {
+      width: 100%;
+      padding: 12px 16px;
+      border: 1px solid #2a2a45;
+      border-radius: 10px;
+      font-size: 0.95rem;
+      margin-bottom: 14px;
+      outline: none;
+      background: #1a1a30;
+      color: #e0d4ec;
+    }
+
+    .contact-form input:focus,
+    .contact-form textarea:focus {
+      border-color: #c084b5;
+    }
+
+    .contact-form textarea {
+      height: 120px;
+      resize: vertical;
+    }
+
+    .contact-form button {
+      background: #c084b5;
+      color: #fff;
+      border: none;
+      padding: 12px 30px;
+      border-radius: 30px;
+      font-size: 1rem;
+      font-weight: 600;
+      cursor: pointer;
+      transition: 0.3s;
+      width: 100%;
+    }
+
+    .contact-form button:hover {
+      background: #a86b9e;
+    }
+
+    /* ── Footer ── */
+    footer {
+      background: #0d0d1a;
+      text-align: center;
+      padding: 22px 20px;
+      color: #b8a8c8;
+      font-size: 0.9rem;
+    }
+
+    footer a {
+      color: #c084b5;
+      text-decoration: none;
+      font-weight: 600;
+    }
+
+    /* ── Responsive ── */
+    @media (max-width: 768px) {
+      nav {
+        padding: 14px 20px;
+      }
+
+      nav ul {
+        display: none;
+        flex-direction: column;
+        position: absolute;
+        top: 68px;
+        left: 0;
+        width: 100%;
+        background: #0d0d1a;
+        padding: 20px;
+        gap: 16px;
+        box-shadow: 0 4px 15px rgba(0,0,0,0.3);
+      }
+
+      nav ul.show {
+        display: flex;
+      }
+
+      .menu-toggle {
+        display: block;
+      }
+
+      .hero h1 {
+        font-size: 2.2rem;
+      }
+
+      .stats {
+        gap: 20px;
+      }
+
+      .portfolio-tabs button {
+        padding: 10px 20px;
+        font-size: 0.9rem;
+      }
+
+      .gallery {
+        grid-template-columns: repeat(auto-fill, minmax(160px, 1fr));
+      }
+    }
+  </style>
+</head>
+<body>
+
+  <!-- ══ NAVBAR ══ -->
+  <nav>
+    <div class="logo">Nithish <span>MakeoverArtistry</span></div>
+    <div class="menu-toggle" onclick="document.querySelector('nav ul').classList.toggle('show')">
+      <i class="fas fa-bars"></i>
+    </div>
+    <ul>
+      <li><a href="#home">Home</a></li>
+      <li><a href="#about">About</a></li>
+      <li><a href="#portfolio">Portfolio</a></li>
+      <li><a href="#services">Service</a></li>
+      <li><a href="#testimonials">Testimonials</a></li>
+      <li><a href="#contact">Contact</a></li>
+    </ul>
+  </nav>
+
+  <!-- ══ HOME ══ -->
+  <section class="hero" id="home">
+    <div>
+      <h1>Welcome to <span>Nithish MakeoverArtistry</span></h1>
+      <p>Transforming looks, boosting confidence — one brushstroke at a time. Professional makeup artistry for every occasion.</p>
+      <a class="btn-book" href="https://wa.me/919837982456?text=Hi%20Nithish%2C%20I%20want%20to%20book%20an%20appointment" target="_blank">Book Appointment <i class="fab fa-whatsapp"></i></a>
+    </div>
+  </section>
+
+  <!-- ══ ABOUT ══ -->
+  <section class="about" id="about">
+    <div class="about-wrap">
+      <div class="about-image">
+        <img src="images/Screenshot 2026-05-23 201339.png" alt="Makeup artist working on client" />
+      </div>
+      <div class="about-text">
+        <h2>About Me</h2>
+        <p>
+          I'm <strong>Nithish</strong>, a passionate makeup artist based in Chennai with over <strong>2+ years</strong> of professional experience. I specialize in bridal, groom, model, photoshoot, and hairstyle makeup. My journey began with a love for art and beauty, and today I've had the privilege of serving <strong>500+ clients</strong> and bringing their vision to life.
+        </p>
+        <p>
+          Every face is unique — I believe in enhancing natural beauty with a tailored approach. Whether it's a traditional bridal look or a modern photoshoot style, I ensure perfection in every detail.
+        </p>
+        <div class="stats">
+          <div class="stat-item">
+            <h3>2+</h3>
+            <p>Years Experience</p>
+          </div>
+          <div class="stat-item">
+            <h3>500+</h3>
+            <p>Clients Served</p>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ══ PORTFOLIO ══ -->
+  <section class="portfolio" id="portfolio">
+    <h2 class="section-title">Portfolio</h2>
+
+    <div class="portfolio-tabs">
+      <button class="active" data-category="bride">Bride</button>
+      <button data-category="groom">Groom</button>
+      <button data-category="model">Model</button>
+      <button data-category="photoshoot">Photoshoot</button>
+      <button data-category="hairstyle">Hair Style</button>
+    </div>
+
+    <div class="gallery" id="gallery"></div>
+  </section>
+
+  <!-- ══ SERVICES ══ -->
+  <section class="services" id="services">
+    <h2 class="section-title">Services</h2>
+    <div class="services-grid">
+      <div class="service-card">
+        <div class="card-bg" style="background-image:url('images/groom/img1.jpeg')"></div>
+        <div class="card-overlay"></div>
+        <div class="card-content">
+          <h3>Groom Makeup</h3>
+          <p>Sharp, polished groom looks for weddings and events. Natural enhancement with a flawless finish.</p>
+          <span class="price">₹2,999</span>
+        </div>
+      </div>
+      <div class="service-card">
+        <div class="card-bg" style="background-image:url('images/bride/img1.jpeg')"></div>
+        <div class="card-overlay"></div>
+        <div class="card-content">
+          <h3>Bride Makeup</h3>
+          <p>Traditional & contemporary bridal looks. High-definition, long-lasting makeup for your special day.</p>
+          <span class="price">₹4,999</span>
+        </div>
+      </div>
+      <div class="service-card">
+        <div class="card-bg" style="background-image:url('images/bride/img3.jpeg')"></div>
+        <div class="card-overlay"></div>
+        <div class="card-content">
+          <h3>Combo (Groom + Bride) <span class="badge">10% OFF</span></h3>
+          <p>Complete bridal package for both groom & bride with a complimentary 10% discount.</p>
+          <span class="price">₹10,499</span>
+        </div>
+      </div>
+      <div class="service-card">
+        <div class="card-bg" style="background-image:url('images/hairstyle/img1.jpeg')"></div>
+        <div class="card-overlay"></div>
+        <div class="card-content">
+          <h3>Hairstyle</h3>
+          <p>Elegant hairstyling — from classic buns to modern curls. Complements your overall look perfectly.</p>
+          <span class="price">₹1500</span>
+        </div>
+      </div>
+      <div class="service-card">
+        <div class="card-bg" style="background-image:url('images/photoshoot/img1.jpeg')"></div>
+        <div class="card-overlay"></div>
+        <div class="card-content">
+          <h3>Photoshoot</h3>
+          <p>Camera-ready makeup for pre-wedding, portfolio, or editorial shoots. Matte, shine-proof finish.</p>
+          <span class="price">₹4,499</span>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ══ TESTIMONIALS ══ -->
+  <section class="testimonials" id="testimonials">
+    <h2 class="section-title">Testimonials</h2>
+    <div class="testimonials-grid">
+      <div class="testimonial-card">
+        <i class="fas fa-quote-left"></i>
+        <div class="stars"><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i></div>
+        <p>With fear I started my makeover but in the end , you won my heart man Really I'm happy Thanks a lot Thambi</p>
+        <h4>— Sajitha Tamilselvan.</h4>
+      </div>
+      <div class="testimonial-card">
+        <i class="fas fa-quote-left"></i>
+        <div class="stars"><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i></div>
+        <p>Professional, punctual, and incredibly talented. The grooming was perfect for my reception.</p>
+        <h4>— Rajesh K.</h4>
+      </div>
+      <div class="testimonial-card">
+        <i class="fas fa-quote-left"></i>
+        <div class="stars"><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i></div>
+        <p>My photoshoot makeup was flawless! It looked natural on camera and lasted all day. Thank you Nithish!</p>
+        <h4>— Ananya M.</h4>
+      </div>
+    </div>
+  </section>
+
+  <!-- ══ CONTACT ══ -->
+  <section class="contact" id="contact">
+    <h2 class="section-title">Contact</h2>
+    <div class="contact-wrap">
+      <div class="contact-info">
+        <h3>Get in Touch</h3>
+        <div class="info-item">
+          <i class="fas fa-user"></i>
+          <p><strong>Nithish</strong></p>
+        </div>
+        <div class="info-item">
+          <i class="fas fa-map-marker-alt"></i>
+          <p>Poonamallee, Chennai</p>
+        </div>
+        <div class="info-item">
+          <i class="fas fa-phone-alt"></i>
+          <p><a href="tel:9837982456">9837982456</a></p>
+        </div>
+        <div class="info-item">
+          <i class="fab fa-instagram"></i>
+          <p><a href="https://instagram.com/nithish_makeoverartistry" target="_blank">@nithish_makeoverartistry</a></p>
+        </div>
+        <div class="info-item">
+          <i class="fab fa-instagram"></i>
+          <p><a href="https://instagram.com/groom_makeover_nithish" target="_blank">@groom_makeover_nithish</a></p>
+        </div>
+      </div>
+      <div class="contact-form">
+        <h3>Send a Message</h3>
+        <input type="text" id="msgName" placeholder="Your Name" />
+        <textarea id="msgText" placeholder="Your Message"></textarea>
+        <button onclick="sendWhatsApp()">Send to WhatsApp <i class="fab fa-whatsapp"></i></button>
+      </div>
+    </div>
+  </section>
+
+  <!-- ══ FOOTER ══ -->
+  <footer>
+    &copy; 2026 Nithish MakeoverArtistry &bull; All Rights Reserved &bull; Developed by <a href="https://vexorix.tech" target="_blank">vexorix.tech</a>
+  </footer>
+
+  <script>
+    // ── Portfolio Data ──
+    const portfolioData = {
+      bride: [
+        "images/bride/img1.jpeg","images/bride/img2.jpeg","images/bride/img3.jpeg",
+        "images/bride/img4.png","images/bride/img5.jpeg","images/bride/img6.jpeg",
+        "images/bride/img7.jpeg","images/bride/img8.png","images/bride/img9.png"
+      ],
+      groom: [
+        "images/groom/img1.jpeg","images/groom/img2.jpeg","images/groom/img3.jpeg",
+        "images/groom/img4.jpeg","images/groom/img5.png","images/groom/img6.png",
+        "images/groom/img7.png","images/groom/img8.png","images/groom/img9.png"
+      ],
+      model: [
+        "images/model/img1.jpeg","images/model/img2.jpeg","images/model/img3.jpeg",
+        "images/model/img4.png","images/model/img5.png"
+      ],
+      photoshoot: [
+        "images/photoshoot/img1.jpeg","images/photoshoot/img2.png","images/photoshoot/img3.png",
+        "images/photoshoot/img4.png","images/photoshoot/img5.png","images/photoshoot/img6.png",
+        "images/photoshoot/img7.png","images/photoshoot/img8.png","images/photoshoot/img9.png",
+        "images/photoshoot/img10.png","images/photoshoot/img11.png"
+      ],
+      hairstyle: [
+        "images/hairstyle/img1.jpeg","images/hairstyle/img2.jpeg","images/hairstyle/img3.jpeg",
+        "images/hairstyle/img4.jpeg","images/hairstyle/img5.jpeg","images/hairstyle/img6.jpeg"
+      ]
+    };
+
+    const gallery = document.getElementById('gallery');
+    let activeCategory = 'bride';
+
+    function renderGallery(category) {
+      const images = portfolioData[category] || [];
+      gallery.innerHTML = images.map(url => `
+        <div class="gallery-card">
+          <img src="${url}" alt="${category}" loading="lazy" />
+          <div class="card-label">${category.charAt(0).toUpperCase() + category.slice(1)}</div>
+        </div>
+      `).join('');
+    }
+
+    document.querySelectorAll('.portfolio-tabs button').forEach(btn => {
+      btn.addEventListener('click', () => {
+        document.querySelectorAll('.portfolio-tabs button').forEach(b => b.classList.remove('active'));
+        btn.classList.add('active');
+        activeCategory = btn.dataset.category;
+        renderGallery(activeCategory);
+      });
+    });
+
+    renderGallery('bride');
+
+    // ── Scroll reveal ──
+    const observer = new IntersectionObserver(entries => {
+      entries.forEach(entry => {
+        if (entry.isIntersecting) {
+          entry.target.classList.add('reveal');
+          observer.unobserve(entry.target);
+        }
+      });
+    }, { threshold: 0.15 });
+
+    document.querySelectorAll('.service-card .card-content').forEach(el => observer.observe(el));
+
+    // ── WhatsApp ──
+    function sendWhatsApp() {
+      const name = document.getElementById('msgName').value.trim();
+      const msg = document.getElementById('msgText').value.trim();
+      if (!name || !msg) {
+        alert('Please fill in your name and message.');
+        return;
+      }
+      const text = encodeURIComponent(`Hi Nithish, I'm ${name}. ${msg}`);
+      window.open(`https://wa.me/8428061223?text=${text}`, '_blank');
+    }
+  </script>
+
+</body>
+</html>
