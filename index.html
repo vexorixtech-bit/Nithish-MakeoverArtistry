@@ -80,7 +80,7 @@
       justify-content: center;
       text-align: center;
       padding: 40px 20px;
-      background: linear-gradient(rgba(2, 1, 10, 0.8), rgba(2, 1, 10, 0.85)),
+      background: linear-gradient(rgba(2, 1, 10, 0), rgba(2, 1, 10, 0.85)),
                   url('https://images.unsplash.com/photo-1596462502278-27bfdc403348?w=1600') center/cover fixed;
     }
 
@@ -91,7 +91,7 @@
     }
 
     .hero h1 span {
-      color: #c084b5;
+      color: #97107e;
     }
 
     .hero p {
@@ -272,6 +272,27 @@
       font-weight: 600;
       color: #fff;
       background: #1a1a30;
+    }
+
+    .gallery-more {
+      text-align: center;
+      margin-top: 30px;
+    }
+
+    .gallery-more button {
+      background: #c084b5;
+      color: #fff;
+      border: none;
+      padding: 12px 40px;
+      border-radius: 30px;
+      font-size: 1rem;
+      font-weight: 600;
+      cursor: pointer;
+      transition: 0.3s;
+    }
+
+    .gallery-more button:hover {
+      background: #a86b9e;
     }
 
     /* ── Services ── */
@@ -659,6 +680,7 @@
     </div>
 
     <div class="gallery" id="gallery"></div>
+    <div class="gallery-more" id="galleryMore"><button onclick="showAllImages()">More <i class="fas fa-chevron-down"></i></button></div>
   </section>
 
   <!-- ══ SERVICES ══ -->
@@ -776,7 +798,7 @@
 
   <!-- ══ FOOTER ══ -->
   <footer>
-    &copy; 2026 Nithish MakeoverArtistry &bull; All Rights Reserved &bull; Developed by <a href="https://vexorix.tech" target="_blank">vexorix.tech</a>
+    &copy; 2026 Nithish MakeoverArtistry &bull; All Rights Reserved &bull; Developed by <a href="https://vexorix-tech.vercel.app/" target="_blank">vexorix.tech</a>
   </footer>
 
   <script>
@@ -809,16 +831,25 @@
     };
 
     const gallery = document.getElementById('gallery');
+    const galleryMore = document.getElementById('galleryMore');
     let activeCategory = 'bride';
+    let showAll = false;
 
     function renderGallery(category) {
       const images = portfolioData[category] || [];
-      gallery.innerHTML = images.map(url => `
+      const limit = showAll ? images.length : Math.min(8, images.length);
+      gallery.innerHTML = images.slice(0, limit).map(url => `
         <div class="gallery-card">
           <img src="${url}" alt="${category}" loading="lazy" />
           <div class="card-label">${category.charAt(0).toUpperCase() + category.slice(1)}</div>
         </div>
       `).join('');
+      galleryMore.style.display = images.length > 8 && !showAll ? 'block' : 'none';
+    }
+
+    function showAllImages() {
+      showAll = true;
+      renderGallery(activeCategory);
     }
 
     document.querySelectorAll('.portfolio-tabs button').forEach(btn => {
@@ -826,6 +857,7 @@
         document.querySelectorAll('.portfolio-tabs button').forEach(b => b.classList.remove('active'));
         btn.classList.add('active');
         activeCategory = btn.dataset.category;
+        showAll = false;
         renderGallery(activeCategory);
       });
     });
